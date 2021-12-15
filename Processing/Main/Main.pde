@@ -1,6 +1,6 @@
 import java.util.Map;
 
-HitBlow game;
+HitAndBlow game;
 String guess;
 String feedback;
 
@@ -11,12 +11,12 @@ int counter;
 int MARGIN = 40;
 int CURSOR_RATE = 60;
 int TARGET_LENGTH = 4;
-String DEFAULT_FEEDBACK = "Type a guess and press enter";
+String DEFAULT_FEEDBACK = "";
 String DEFAULT_GUESS = "";
 
 public void setup() {
   size(1280, 800);
-  game = new HitBlow();
+  game = new HitAndBlow();
   feedback = DEFAULT_FEEDBACK;
   guess = DEFAULT_GUESS;
   guesses = new ArrayList<String>();
@@ -32,8 +32,8 @@ public void draw() {
   
   String rules = "RULES\n\n\n";
   rules += "1. Guess a squence of " + game.getTarget().length + " symbols.\n\n";
-  rules += "2. The answer may include any of the following symbols:\n\n";
-  rules += "\t \t " + game.getSymbolsAsString() + "\n\n";
+  rules += "2. The answer may include any of the following symbols: ";
+  rules += game.getSymbolsAsString() + "\n\n";
   rules += "3. The answer may use each symbol only once.\n\n";
   rules += "4. \"Hit\" means you correctly guessed the position and value for a symbol.\n\n";
   rules += "5. \"Blow\" means you correctly guessed a symbol, but not in the correct position.\n\n";
@@ -51,21 +51,21 @@ public void draw() {
     counter = 0;
   }
   
-  String guessHistory = "GUESS HISTORY\n\n" + "Guess\n\n";
-  String feedbackHistory = "\n\n" + "Feedback\n\n";
+  String guessHistory = "GUESS HISTORY\n\n";
+  String feedbackHistory = "\n\n";
   for (String g : guesses) {
     guessHistory += g + "\n";
     feedbackHistory += feedbackMap.get(g) + "\n";
   }
   
-  fill(255);
+  fill(#99FF99);
   text(title, MARGIN, MARGIN);
   text(console, MARGIN, MARGIN + 40);
   text(rules, MARGIN, MARGIN + 190);
   text(guessHistory, 0.5 * width, MARGIN);
   text(feedbackHistory, 0.5 * width + 100, MARGIN);
   
-  stroke(255);
+  stroke(#99FF99);
   line(MARGIN, MARGIN - 15, 0.5 * width - MARGIN, MARGIN - 15);
   line(MARGIN, MARGIN + 05, 0.5 * width - MARGIN, MARGIN + 05);
   
@@ -107,6 +107,6 @@ public void keyPressed() {
     feedbackMap.put(entryKey, entry);
     guess = DEFAULT_GUESS;
   } else {
-   guess += key;
+     guess += key;
   }
 }

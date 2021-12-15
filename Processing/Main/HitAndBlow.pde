@@ -3,13 +3,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HitBlow {
+public class HitAndBlow {
   private String[] target, symbols;
   private int DEFAULT_LENGTH = 4;
   private String[] DEFAULT_SYMBOLS = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
   private boolean solved;
   
-  public HitBlow() {
+  public HitAndBlow() {
     this.symbols = DEFAULT_SYMBOLS;
     this.initTarget(DEFAULT_LENGTH);
   }
